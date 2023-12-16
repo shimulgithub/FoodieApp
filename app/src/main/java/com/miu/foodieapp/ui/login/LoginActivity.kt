@@ -19,12 +19,11 @@ class LoginActivity : AppCompatActivity() {
   // login data demo
     private val users = ArrayList<User>(listOf(
         User("admin", "Admin", "admin"),
-        User("shimul", "Shimul", "password")
+
     ))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         sharedPreferences = getSharedPreferences("LoggedInUserPreferences", Context.MODE_PRIVATE)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
         binding.login.setOnClickListener {
             val userId = binding.username.text.toString()
             val password = binding.password.text.toString()
-            //check userList with entered credentials
+
             val validUser = users.filter { user -> user.userId == userId && user.password == password }.firstOrNull()
             if(validUser == null)
                 showLoginFailed("Sorry invalid username or password.")
